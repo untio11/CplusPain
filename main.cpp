@@ -1,6 +1,6 @@
 #include <iostream>
 #define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
+//#include <tiny_obj_loader.h>
 
 #include <GLFW/glfw3.h>
 
