@@ -1,24 +1,14 @@
 #include <iostream>
 #define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
-
+//#include <tiny_obj_loader.h>
 #include <GLFW/glfw3.h>
+#include "wm/Window.h"
 
 static void errorCallback(int error, const char* description) {
     fprintf_s(stderr, "Error: %s\n", description);
 }
 
-static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-        glfwSetWindowShouldClose(window, GLFW_TRUE);
-    }
-}
-
-static void resizeCallback(GLFWwindow* window, int width, int height) {
-    glViewport(0, 0, width, height);
-}
-
-int main() {
+GLFWwindow* initGLFW() {
     if (!glfwInit())
         std::cout << "Something went wrong with setting up GLFW\n";
     glfwSetErrorCallback(errorCallback);
@@ -26,19 +16,12 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
+    return Window::init(720, 480, "Test");
+}
 
-    GLFWwindow* window = glfwCreateWindow(720, 480, "Testing Title", NULL, NULL);
-    glfwSetKeyCallback(window, keyCallback);
-    glfwSetFramebufferSizeCallback(window, resizeCallback);
+int main() {
+    GLFWwindow* window = initGLFW();
 
-    if (!window)
-        std::cout << "Something went wrong with setting up the window\n";
-    glfwMakeContextCurrent(window);
-
-    int width, height;
-    glfwGetFramebufferSize(window, &width, &height);
-    resizeCallback(window, width, height); // Possibly not necessary.
-    glfwSwapInterval(1);
     float red = 0;
     float green = 0;
     float blue = 0;
