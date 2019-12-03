@@ -3,6 +3,7 @@
 //#include <tiny_obj_loader.h>
 #include <GLFW/glfw3.h>
 #include "wm/Window.h"
+#include "rendering/Renderer.h"
 
 static void errorCallback(int error, const char* description) {
     fprintf_s(stderr, "Error: %s\n", description);
@@ -21,6 +22,7 @@ GLFWwindow* initGLFW() {
 
 int main() {
     GLFWwindow* window = initGLFW();
+    Renderer::init();
 
     float red = 0;
     float green = 0;
@@ -31,6 +33,8 @@ int main() {
         glClearColor(red, green, blue, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         glfwPollEvents();
+
+        Renderer::render();
         glfwSwapBuffers(window);
 
         if (up && red < 1.0) {
