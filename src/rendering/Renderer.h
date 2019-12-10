@@ -13,11 +13,15 @@ private:
     // Shaders
     ShaderProgram* viewport_shader;
     ShaderProgram* raytrace_shader;
-    // Viewport VAO
+    // Viewport data
     unsigned int viewport_vao;
     unsigned int viewport_index_vbo;
     // Texture that the raytracer will render to.
     unsigned int raytrace_image;
+    // Raytracer work group dimensions
+    int raytrace_work_group_dim[3];
+    // Scaling parameter for image quality.
+    const float scaling = 1.0f;
     // Coordinates and indices for the viewport.
     static constexpr float viewport[16] {
             -1.0f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
@@ -32,6 +36,7 @@ private:
     void renderViewport();
     void rayTrace();
     void setupTexture();
+    void setupRaytraceProgram();
 
 public:
     /**
