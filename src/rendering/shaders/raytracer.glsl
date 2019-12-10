@@ -5,11 +5,8 @@ layout(rgba32f, binding = 0) uniform image2D img_output;
 void main() {
     // get index in global work group i.e x,y position
     ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
-    vec4 color = vec4(gl_LocalInvocationID, 1.0);
-    //
-    // interesting stuff happens here later
-    //
+    vec2 c = gl_GlobalInvocationID.xy;
+    vec4 color = vec4(c / imageSize(img_output).xy, 0.0, 1.0);
 
-    // output to a specific pixel in the image
     imageStore(img_output, pixel_coords, color);
 }
