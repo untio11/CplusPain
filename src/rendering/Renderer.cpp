@@ -35,10 +35,10 @@ void Renderer::setupViewportQuad() {
 }
 
 void Renderer::setupViewportProgram() {
-    ShaderProgram program = ShaderProgram();
-    program.addFile("../src/rendering/shaders/viewport_vshader.glsl", GL_VERTEX_SHADER);
-    program.addFile("../src/rendering/shaders/viewport_fshader.glsl", GL_FRAGMENT_SHADER);
-    viewport_shader = program.createProgram();
+    viewport_shader = new ShaderProgram();
+    viewport_shader->addFile("../src/rendering/shaders/viewport_vshader.glsl", GL_VERTEX_SHADER);
+    viewport_shader->addFile("../src/rendering/shaders/viewport_fshader.glsl", GL_FRAGMENT_SHADER);
+    viewport_shader->createProgram();
 }
 
 void Renderer::setupTexture() {
@@ -63,9 +63,11 @@ void Renderer::rayTrace() {
 }
 
 void Renderer::renderViewport() {
-    std::cerr << glGetError() << " : ";
-    glUseProgram(viewport_shader);
-    std::cerr << glGetError() << std::endl;
+    if (glIsProgram(viewport_shader->getID())) {
+        glUseProgram(viewport_shader->getID());
+    } else {
+        std::cerr << "That wasn't a valid viewport shader program" << std::endl;
+    }
     //glActiveTexture(GL_TEXTURE0);
     //glBindTexture(GL_TEXTURE_2D, raytrace_image);
 
@@ -76,18 +78,21 @@ void Renderer::renderViewport() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     // Unbind everything.
-    std::cerr << glGetError() << " : ";
     glUseProgram(0);
     glDisableVertexAttribArray(0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     //glActiveTexture(0);
-    std::cerr << glGetError() << std::endl;
 }
 
 Renderer::Renderer() {
     setupViewportQuad();
     setupViewportProgram();
     //setupTexture();
+}
+
+Renderer::~Renderer() {
+    delete(viewport_shader);
+    delete(raytrace_shader);
 }
 

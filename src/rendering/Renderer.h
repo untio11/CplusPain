@@ -10,9 +10,9 @@ private:
     static int height;
     void setupViewportQuad();
     void setupViewportProgram();
-    // Program ID's
-    unsigned int viewport_shader;
-    unsigned int raytrace_shader;
+    // Shaders
+    ShaderProgram* viewport_shader;
+    ShaderProgram* raytrace_shader;
     // Viewport VAO
     unsigned int viewport_vao;
     unsigned int viewport_index_vbo;
@@ -20,10 +20,10 @@ private:
     unsigned int raytrace_image;
     // Coordinates and indices for the viewport.
     static constexpr float viewport[16] {
-            -0.5f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
+            -1.0f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
             -1.0f, -1.0f, 0.0f, 1.0f, // 2   -> ID:1
-            1.0f, -1.0f, 0.0f, 1.0f, // 3/4 -> ID:2
-            1.0f,  1.0f, 0.0f, 1.0f, // 5   -> ID:3
+             1.0f, -1.0f, 0.0f, 1.0f, // 3/4 -> ID:2
+             1.0f,  1.0f, 0.0f, 1.0f, // 5   -> ID:3
     };
     static constexpr unsigned int viewport_indices[6] {
             0, 1, 2,
@@ -44,6 +44,7 @@ public:
     void init();
     void render();
     Renderer();
+    ~Renderer();
 };
 
 #endif //CPLUSPAIN_RENDERER_H

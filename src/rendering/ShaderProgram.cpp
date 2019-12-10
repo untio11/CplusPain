@@ -64,7 +64,7 @@ unsigned int ShaderProgram::linkShaders(std::vector<std::pair<unsigned int, GLen
     glLinkProgram(ID);
     glGetProgramiv(ID, GL_LINK_STATUS, &success);
     if (!success) {
-        glGetProgramInfoLog(ID, 512, NULL, info_log);
+        glGetProgramInfoLog(ID, 512, nullptr, info_log);
         std::cerr << "Shader linking failed: " << info_log << std::endl;
     }
 
