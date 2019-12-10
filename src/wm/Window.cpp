@@ -1,12 +1,15 @@
 #include "Window.h"
-#include <iostream>
+#include "../../lib/glad/include/glad/glad.h"
 #include "GLFW/glfw3.h"
+#include <iostream>
 #include "../rendering/Renderer.h"
 
 GLFWwindow* Window::init(const int width, const int height, const char* name) {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     GLFWwindow* window = glfwCreateWindow(width, height, name, NULL, NULL);
     if (!window) {
-        std::cout << "Something went wrong with setting up the window\n";
+        std::cerr << "Something went wrong with setting up the window\n";
     }
 
     glfwSetKeyCallback(window, keyCallback);
@@ -14,6 +17,11 @@ GLFWwindow* Window::init(const int width, const int height, const char* name) {
     Renderer::resize(width, height);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
+
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize OpenGL context" << std::endl;
+    }
+
     return window;
 }
 

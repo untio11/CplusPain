@@ -1,9 +1,10 @@
 #include <iostream>
 #define TINYOBJLOADER_IMPLEMENTATION
 //#include <tiny_obj_loader.h>
+#include "lib/glad/include/glad/glad.h"
 #include <GLFW/glfw3.h>
-#include "wm/Window.h"
-#include "rendering/Renderer.h"
+#include "src/wm/Window.h"
+#include "src/rendering/Renderer.h"
 
 static void errorCallback(int error, const char* description) {
     fprintf_s(stderr, "Error: %s\n", description);
@@ -22,36 +23,19 @@ GLFWwindow* initGLFW() {
 
 int main() {
     GLFWwindow* window = initGLFW();
-    Renderer::init();
-
-    float red = 0;
-    float green = 0;
-    float blue = 0;
-    bool up = true;
+    Renderer renderer = Renderer();
+    renderer.init();
+    float red = 0.5f;
+    float green = 0.5f;
+    float blue = 0.5f;
 
     while (!glfwWindowShouldClose(window)) {
         glClearColor(red, green, blue, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         glfwPollEvents();
 
-        Renderer::render();
+        renderer.render();
         glfwSwapBuffers(window);
-
-        if (up && red < 1.0) {
-            red += 1.0/256;
-        } else if (up && green < 1.0) {
-            green += 1.0/256;
-        } else if (up && blue < 1.0) {
-            blue += 1.0/256;
-        } else if (!up && red >= 0.0) {
-            red -= 1.0/256;
-        } else if (!up && green >= 0.0) {
-            green -= 1.0/256;
-        } else if (!up && blue >= 0.0) {
-            blue -= 1.0/256;
-        } else {
-            up = !up;
-        }
     }
 
     glfwDestroyWindow(window);
