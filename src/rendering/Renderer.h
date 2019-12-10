@@ -8,20 +8,18 @@ private:
     // In pixels for the viewport
     static int width;
     static int height;
-    void setupViewportQuad();
-    void setupViewportProgram();
     // Shaders
-    ShaderProgram* viewport_shader;
-    ShaderProgram* raytrace_shader;
+    static ShaderProgram* viewport_shader;
+    static ShaderProgram* raytrace_shader;
     // Viewport data
-    unsigned int viewport_vao;
-    unsigned int viewport_index_vbo;
+    static unsigned int viewport_vao;
+    static unsigned int viewport_index_vbo;
     // Texture that the raytracer will render to.
-    unsigned int raytrace_image;
+    static unsigned int raytrace_image;
     // Raytracer work group dimensions
-    int raytrace_work_group_dim[3];
+    static int raytrace_work_group_dim[3];
     // Scaling parameter for image quality.
-    const float scaling = 1.0f;
+    static constexpr float scaling = 1.0f;
     // Coordinates and indices for the viewport.
     static constexpr float viewport[16] {
             -1.0f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
@@ -33,10 +31,12 @@ private:
             0, 1, 2,
             2, 3, 0
     };
-    void renderViewport();
-    void rayTrace();
-    void setupTexture();
-    void setupRaytraceProgram();
+    static void setupViewportQuad();
+    static void setupViewportProgram();
+    static void renderViewport();
+    static void rayTrace();
+    static void setupTexture();
+    static void setupRaytraceProgram();
 
 public:
     /**
@@ -45,9 +45,8 @@ public:
      * @param height The new height of the viewport.
      */
     static void resize(int width, int height);
-
-    void init();
-    void render();
+    static void init();
+    static void render();
     Renderer();
     ~Renderer();
 };

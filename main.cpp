@@ -23,8 +23,10 @@ GLFWwindow* initGLFW() {
 
 int main() {
     GLFWwindow* window = initGLFW();
-    Renderer renderer = Renderer();
-    renderer.init();
+    Renderer::init();
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    Renderer::resize(width, height);
     float red = 0.5f;
     float green = 0.5f;
     float blue = 0.5f;
@@ -34,7 +36,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         glfwPollEvents();
 
-        renderer.render();
+        Renderer::render();
         glfwSwapBuffers(window);
     }
 

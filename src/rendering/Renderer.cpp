@@ -1,20 +1,29 @@
 #include "Renderer.h"
 #include "ShaderProgram.h"
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 // Initialize static member variables.
 int Renderer::width = 0;
 int Renderer::height = 0;
+ShaderProgram* Renderer::viewport_shader = nullptr;
+ShaderProgram* Renderer::raytrace_shader = nullptr;
+unsigned int Renderer::viewport_vao = 0;
+unsigned int Renderer::viewport_index_vbo = 0;
+unsigned int Renderer::raytrace_image = 0;
+int Renderer::raytrace_work_group_dim[] = {0, 0, 0};
 
 void Renderer::resize(int _width, int _height) {
     width = _width;
     height = _height;
-    setupTexture();
+    Renderer::setupTexture();
 }
 
 void Renderer::init() {
-
+    setupViewportQuad();
+    setupViewportProgram();
+    setupTexture();
+    setupRaytraceProgram();
 }
 
 void Renderer::setupViewportQuad() {
@@ -99,10 +108,7 @@ void Renderer::renderViewport() {
 }
 
 Renderer::Renderer() {
-    setupViewportQuad();
-    setupViewportProgram();
-    setupTexture();
-    setupRaytraceProgram();
+
 }
 
 Renderer::~Renderer() {

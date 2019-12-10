@@ -14,7 +14,6 @@ GLFWwindow* Window::init(const int width, const int height, const char* name) {
 
     glfwSetKeyCallback(window, keyCallback);
     glfwSetFramebufferSizeCallback(window, resizeCallback);
-    Renderer::resize(width, height);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
 
