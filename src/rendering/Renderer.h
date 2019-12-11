@@ -19,7 +19,7 @@ private:
     // Raytracer work group dimensions
     static int raytrace_work_group_dim[3];
     // Scaling parameter for image quality.
-    static constexpr float scaling = 1.0f;
+    static constexpr float scaling = 3.0f;
     // Coordinates and indices for the viewport.
     static constexpr float viewport[16] {
             -1.0f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
@@ -47,7 +47,6 @@ public:
     static void resize(int width, int height);
     static void init();
     static void render();
-    Renderer();
     ~Renderer();
 };
 

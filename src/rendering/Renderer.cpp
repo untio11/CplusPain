@@ -26,45 +26,9 @@ void Renderer::init() {
     setupRaytraceProgram();
 }
 
-void Renderer::setupViewportQuad() {
-    glGenVertexArrays(1, &viewport_vao);
-    glBindVertexArray(viewport_vao);
-
-    unsigned int coord_vbo;
-    glGenBuffers(1, &coord_vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, coord_vbo);
-    glBufferData(GL_ARRAY_BUFFER, 16 * sizeof(float), viewport, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, nullptr);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-    glGenBuffers(1, &viewport_index_vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, viewport_index_vbo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), viewport_indices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    glBindVertexArray(0);
-}
-
-void Renderer::setupViewportProgram() {
-    viewport_shader = new ShaderProgram();
-    viewport_shader->addFile("../src/rendering/shaders/viewport_vshader.glsl", GL_VERTEX_SHADER);
-    viewport_shader->addFile("../src/rendering/shaders/viewport_fshader.glsl", GL_FRAGMENT_SHADER);
-    viewport_shader->createProgram();
-}
-
-void Renderer::setupTexture() {
-    glGenTextures(1, &raytrace_image);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, raytrace_image);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width * scaling, height * scaling, 0, GL_RGBA, GL_FLOAT, nullptr);
-    glBindImageTexture(0, raytrace_image, 0, false, 0, GL_READ_WRITE, GL_RGBA32F);
-}
-
 void Renderer::render() {
+    glClearColor(0.5, 0.5, 0.5, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
     rayTrace();
     renderViewport();
 }
@@ -107,8 +71,42 @@ void Renderer::renderViewport() {
     glActiveTexture(0);
 }
 
-Renderer::Renderer() {
+void Renderer::setupViewportQuad() {
+    glGenVertexArrays(1, &viewport_vao);
+    glBindVertexArray(viewport_vao);
 
+    unsigned int coord_vbo;
+    glGenBuffers(1, &coord_vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, coord_vbo);
+    glBufferData(GL_ARRAY_BUFFER, 16 * sizeof(float), viewport, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 4, GL_FLOAT, false, 0, nullptr);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glGenBuffers(1, &viewport_index_vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, viewport_index_vbo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), viewport_indices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    glBindVertexArray(0);
+}
+
+void Renderer::setupViewportProgram() {
+    viewport_shader = new ShaderProgram();
+    viewport_shader->addFile("../src/rendering/shaders/viewport_vshader.glsl", GL_VERTEX_SHADER);
+    viewport_shader->addFile("../src/rendering/shaders/viewport_fshader.glsl", GL_FRAGMENT_SHADER);
+    viewport_shader->createProgram();
+}
+
+void Renderer::setupTexture() {
+    glGenTextures(1, &raytrace_image);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, raytrace_image);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width * scaling, height * scaling, 0, GL_RGBA, GL_FLOAT, nullptr);
+    glBindImageTexture(0, raytrace_image, 0, false, 0, GL_READ_WRITE, GL_RGBA32F);
 }
 
 Renderer::~Renderer() {

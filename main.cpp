@@ -27,17 +27,39 @@ int main() {
     int width, height;
     glfwGetWindowSize(window, &width, &height);
     Renderer::resize(width, height);
-    float red = 0.5f;
-    float green = 0.5f;
-    float blue = 0.5f;
+    double previous = glfwGetTime();
+    double lag = 0.0;
+    double current;
+    double elapsed;
+    double accumulated = 0.0;
+    unsigned int iterations = 0;
+    const double timestep = 6.0 / 1000; // In ms.
+    const unsigned int frames = 300;
+    std::cerr << "Setup time: " << previous << std::endl;
 
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(red, green, blue, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        current = glfwGetTime();
+        elapsed = current - previous;
+        accumulated += elapsed;
+        previous = current;
+        lag += elapsed;
+
+        if (iterations == frames) {
+            std::cout << "Avg Frametime over last "<< frames << " frames: " << accumulated * 1000 / frames << "ms.\n";
+            accumulated = 0;
+            iterations = 0;
+        }
+
         glfwPollEvents();
+
+        while (lag >= timestep) {
+            // Update simulations and stuff.
+            lag -= timestep;
+        }
 
         Renderer::render();
         glfwSwapBuffers(window);
+        ++iterations;
     }
 
     glfwDestroyWindow(window);
