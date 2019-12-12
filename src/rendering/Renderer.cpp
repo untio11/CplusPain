@@ -1,7 +1,9 @@
 #include "Renderer.h"
 #include "ShaderProgram.h"
+#include "Camera.h"
 #include <iostream>
 #include <cmath>
+#include <glm/gtc/type_ptr.hpp>
 
 // Initialize static member variables.
 int Renderer::width = 0;
@@ -12,6 +14,7 @@ unsigned int Renderer::viewport_vao = 0;
 unsigned int Renderer::viewport_index_vbo = 0;
 unsigned int Renderer::raytrace_image = 0;
 int Renderer::raytrace_work_group_dim[] = {0, 0, 0};
+Camera* Renderer::camera = nullptr;
 
 void Renderer::resize(int _width, int _height) {
     width = _width;
@@ -24,38 +27,31 @@ void Renderer::init() {
     setupViewportProgram();
     setupTexture();
     setupRaytraceProgram();
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, raytrace_image);
 }
 
 void Renderer::render() {
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
+    loadCameraData(*camera);
     rayTrace();
     renderViewport();
 }
 
 void Renderer::rayTrace() {
-    if (glIsProgram(raytrace_shader->getID())) {
-        glUseProgram(raytrace_shader->getID());
-    } else {
-        std::cerr << "That wasn't a valid ray tracing program." << std::endl;
-    }
-
+    raytrace_shader->use();
     glDispatchCompute(
             ceil(width  * scaling / raytrace_work_group_dim[0]),
             ceil(height * scaling / raytrace_work_group_dim[1]),
             1
     );
-
+    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
 void Renderer::renderViewport() {
-    if (glIsProgram(viewport_shader->getID())) {
-        glUseProgram(viewport_shader->getID());
-    } else {
-        std::cerr << "That wasn't a valid viewport shader program" << std::endl;
-    }
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, raytrace_image);
+    viewport_shader->use();
+
 
     glBindVertexArray(viewport_vao);
     glEnableVertexAttribArray(0); // Enable vertex position data
@@ -64,11 +60,9 @@ void Renderer::renderViewport() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     // Unbind everything.
-    glUseProgram(0);
     glDisableVertexAttribArray(0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glActiveTexture(0);
 }
 
 void Renderer::setupViewportQuad() {
@@ -142,5 +136,15 @@ void Renderer::setupRaytraceProgram() {
     int work_grp_inv;
     glGetIntegerv(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &work_grp_inv);
     fprintf(stderr, "max local work group invocations %i\n", work_grp_inv);
+}
+
+void Renderer::loadCameraData(Camera& _camera) { // Might keep track of last position to copy less.
+    glProgramUniform3fv(raytrace_shader->getID(), 0, 1, glm::value_ptr(_camera.getPosition()));
+    glProgramUniform1f(raytrace_shader->getID(), 1, _camera.getCameraDistance());
+    glProgramUniformMatrix3fv(raytrace_shader->getID(), 2, 1, false, glm::value_ptr(_camera.getLocalAxis()));
+}
+
+void Renderer::setCamera(Camera* _camera) {
+    camera = _camera;
 }
 

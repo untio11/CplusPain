@@ -1,10 +1,10 @@
 #include <iostream>
 #define TINYOBJLOADER_IMPLEMENTATION
-//#include <tiny_obj_loader.h>
-#include "lib/glad/include/glad/glad.h"
+#include <tiny_obj_loader.h>
 #include <GLFW/glfw3.h>
 #include "src/wm/Window.h"
 #include "src/rendering/Renderer.h"
+#include "src/rendering/Camera.h"
 
 static void errorCallback(int error, const char* description) {
     fprintf_s(stderr, "Error: %s\n", description);
@@ -26,16 +26,19 @@ int main() {
     Renderer::init();
     int width, height;
     glfwGetWindowSize(window, &width, &height);
+    Camera cam;
+    Renderer::setCamera(&cam);
     Renderer::resize(width, height);
     double previous = glfwGetTime();
+    std::cerr << "Setup time: " << previous << std::endl;
+
     double lag = 0.0;
     double current;
     double elapsed;
     double accumulated = 0.0;
     unsigned int iterations = 0;
-    const double timestep = 6.0 / 1000; // In ms.
+    const double timestep = 10.0 / 1000.0; // In ms.
     const unsigned int frames = 300;
-    std::cerr << "Setup time: " << previous << std::endl;
 
     while (!glfwWindowShouldClose(window)) {
         current = glfwGetTime();
@@ -54,9 +57,11 @@ int main() {
 
         while (lag >= timestep) {
             // Update simulations and stuff.
+            std::cerr << "Update" << std::endl;
+            cam.rotate(glm::vec3(0.0f, 0.0f, 1.0), 0.01);
             lag -= timestep;
         }
-
+        std::cerr << ">Render!" << std::endl;
         Renderer::render();
         glfwSwapBuffers(window);
         ++iterations;

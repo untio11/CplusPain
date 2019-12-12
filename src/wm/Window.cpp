@@ -12,6 +12,7 @@ GLFWwindow* Window::init(const int width, const int height, const char* name) {
         std::cerr << "Something went wrong with setting up the window\n";
     }
 
+    glfwSetWindowAspectRatio(window, 16, 9);
     glfwSetKeyCallback(window, keyCallback);
     glfwSetFramebufferSizeCallback(window, resizeCallback);
     glfwMakeContextCurrent(window);
