@@ -51,7 +51,7 @@ vec4 planeIntersect(vec3 ray, float closest) {
 
     if (d >= 0.0  && d <= closest) {
         vec4 col = ((abs(int(intersection.x - 0.5) % 2) < 0.001) && !(abs(int(intersection.z - 0.5) % 2) < 0.001)) ? vec4(0.3, 0.3, 0.3, 1.0) : vec4(0.6, 0.6, 0.6, 1.0);
-        return phong(intersection, planenormal, vec3(0.0, 4.0, 0.0), col, 1.0);
+        return phong(intersection, planenormal, vec3(0.0, 4.0, 0.0), col, 0.1);
     }
     return vec4(0.53, 0.81, 0.98, 1.0);
 }

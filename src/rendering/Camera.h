@@ -5,11 +5,16 @@
 #include <glm/vec4.hpp>
 #include <glm/mat3x3.hpp>
 
+class GLFWwindow;
+
 class Camera {
 private:
     float camera_distance = 1.2; // Distance from viewport. Determines FOV.
     glm::vec4 position;
     glm::mat4 local_coords;
+    double last_x, last_y;
+    float sensitivity = 0.05;
+    float pitch, yaw;
 public:
     Camera();
     glm::vec3 getPosition();
@@ -24,6 +29,7 @@ public:
      * @param absolute Whether or not to use world coordinates for the translation.
      */
     void translate(glm::vec3 translation, bool absolute = false);
+    void cameraCallback(GLFWwindow* window, double x_pos, double y_pos);
 };
 
 
