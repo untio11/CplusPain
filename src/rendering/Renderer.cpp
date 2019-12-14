@@ -141,7 +141,7 @@ void Renderer::setupRaytraceProgram() {
 void Renderer::loadCameraData(Camera& _camera) { // Might keep track of last position to copy less.
     glProgramUniform3fv(raytrace_shader->getID(), 0, 1, glm::value_ptr(_camera.getPosition()));
     glProgramUniform1f(raytrace_shader->getID(), 1, _camera.getCameraDistance());
-    glProgramUniformMatrix3fv(raytrace_shader->getID(), 2, 1, false, glm::value_ptr(_camera.getLocalAxis()));
+    glProgramUniformMatrix3fv(raytrace_shader->getID(), 2, 1, false, glm::value_ptr(_camera.getRotationMatrix()));
 }
 
 void Renderer::setCamera(Camera* _camera) {

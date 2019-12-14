@@ -2,14 +2,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 Camera::Camera() {
-    local_coords = glm::mat4(1.0f);
-    position = glm::vec4(0.0f, 0.0f, -1.0f, 0);
+    local_coords = glm::quat();
+    position = glm::vec3(0.0f, 0.0f, -1.0f);
     last_x = -1;
     last_y = -1;
-    pitch = 0;
-    yaw = 0;
+    front = glm::vec3(0.0, 0.0, 1.0);
+    right = glm::vec3(1.0, 0.0, 0.0);
+    up = glm::vec3(0.0, 1.0, 0.0);
 }
 
 glm::vec3 Camera::getPosition() {
@@ -20,23 +23,29 @@ float Camera::getCameraDistance() {
     return camera_distance;
 }
 
-glm::mat3 Camera::getLocalAxis() {
-    return local_coords;
+glm::mat3 Camera::getRotationMatrix() {
+    return glm::toMat3(local_coords);
 }
 
 void Camera::rotate(glm::vec3 const& axis, float degrees, bool absolute) {
+    glm::quat quat;
+
     if (absolute) {
-        local_coords = glm::rotate(local_coords, glm::radians(degrees), axis);
+        quat = glm::angleAxis(degrees, axis);
     } else {
-        local_coords = glm::rotate(local_coords, glm::radians(degrees), glm::mat3(local_coords) * axis);
+        quat = glm::angleAxis(degrees, axis);
+        up = quat * up;
+        right = quat * right;
+        front = quat * front;
     }
+    local_coords = quat * local_coords;
 }
 
 void Camera::translate(glm::vec3 translation, bool absolute) {
     if (absolute) {
-        position += glm::vec4(translation, 0.0f);
+        position += translation;
     } else {
-        position += local_coords * glm::vec4(translation, 0.0f);
+        position += translation;
     }
 }
 
@@ -46,13 +55,13 @@ void Camera::cameraCallback(GLFWwindow *window, double x_pos, double y_pos) {
         last_y = y_pos;
     }
 
-    float x_offset = (x_pos - last_x) * sensitivity;
+    float x_offset = (last_x - x_pos) * sensitivity;
     float y_offset = (last_y - y_pos) * sensitivity ;
-    std::cerr << "x_offset: " << x_offset << " y_offset: " << y_offset << std::endl;
-    // Clamp pitch between -89 and 89 degrees.
-    float pitch = (y_offset > 89.0f) ? 89.0f : (y_offset) < -89.0f ? -89.0f : y_offset;
-    rotate(glm::vec3(1.0, 0.0, 0.0), -pitch, false);
-    rotate(glm::vec3(0.0, 1.0, 0.0), -x_offset, false);
+
+    std::cerr << "Up is: " << glm::to_string(up) << std::endl;
+    rotate(up,    x_offset, false);
+    rotate(right, y_offset, false);
+
     last_x = x_pos;
     last_y = y_pos;
 

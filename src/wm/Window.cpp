@@ -35,7 +35,7 @@ void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, 
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     } else if (key == GLFW_KEY_UP && action == GLFW_PRESS) {
-        cam->translate(glm::vec3(0.0, 0.0, 1.0));
+        cam->translate(glm::normalize(-cam->front));
     }
 }
 

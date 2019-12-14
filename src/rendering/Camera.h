@@ -4,21 +4,22 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 #include <glm/mat3x3.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 class GLFWwindow;
 
 class Camera {
 private:
     float camera_distance = 1.2; // Distance from viewport. Determines FOV.
-    glm::vec4 position;
-    glm::mat4 local_coords;
+    glm::vec3 position;
+    glm::quat local_coords;
     double last_x, last_y;
-    float sensitivity = 0.05;
-    float pitch, yaw;
+    float sensitivity = 0.005;
 public:
+    glm::vec3 front, right, up;
     Camera();
     glm::vec3 getPosition();
-    glm::mat3 getLocalAxis();
+    glm::mat3 getRotationMatrix();
     float getCameraDistance();
     void rotate(glm::vec3 const& axis, float degrees, bool absolute = false);
     /**
