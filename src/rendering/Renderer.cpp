@@ -52,7 +52,6 @@ void Renderer::rayTrace() {
 void Renderer::renderViewport() {
     viewport_shader->use();
 
-
     glBindVertexArray(viewport_vao);
     glEnableVertexAttribArray(0); // Enable vertex position data
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, viewport_index_vbo);

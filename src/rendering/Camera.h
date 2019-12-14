@@ -21,7 +21,7 @@ public:
     glm::vec3 getPosition();
     glm::mat3 getRotationMatrix();
     float getCameraDistance();
-    void rotate(glm::vec3 const& axis, float degrees, bool absolute = false);
+    void rotate(glm::vec3 const& axis, float degrees);
     /**
      * Translate the camera in the given direction.
      * When absolute is set to false, it will take translation as a direction to move in relative to the
