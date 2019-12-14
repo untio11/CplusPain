@@ -36,12 +36,8 @@ void Camera::rotate(glm::vec3 const& axis, float degrees) {
     local_coords = quat * local_coords;
 }
 
-void Camera::translate(glm::vec3 translation, bool absolute) {
-    if (absolute) {
-        position += translation;
-    } else {
-        position += translation;
-    }
+void Camera::translate(glm::vec3 translation, double delta_t) {
+    position += translation * (float) delta_t * speed;
 }
 
 void Camera::cameraCallback(GLFWwindow *window, double x_pos, double y_pos) {

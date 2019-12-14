@@ -1,37 +1,23 @@
 #include <iostream>
-#define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
 #include <GLFW/glfw3.h>
-#include <functional>
 #include "src/wm/Window.h"
 #include "src/rendering/Renderer.h"
 #include "src/rendering/Camera.h"
-
-static void errorCallback(int error, const char* description) {
-    fprintf_s(stderr, "Error: %s\n", description);
-}
-
-GLFWwindow* initGLFW(Camera* cam) {
-    if (!glfwInit())
-        std::cout << "Something went wrong with setting up GLFW\n";
-    glfwSetErrorCallback(errorCallback);
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-
-    return Window::init(720, 480, "Test", cam);
-}
+#include "src/wm/KeyHandler.h"
 
 int main() {
     Camera cam;
-    GLFWwindow* window = initGLFW(&cam);
+    GLFWwindow* window = Window::init(720, 480, "Test", &cam);
     Renderer::init();
+    Renderer::setCamera(&cam);
+
+    KeyHandler key_handler = KeyHandler(&cam, window);
+
     int width, height;
     glfwGetWindowSize(window, &width, &height);
-    Renderer::setCamera(&cam);
     Renderer::resize(width, height);
+
     double previous = glfwGetTime();
-    using namespace std::placeholders;
     std::cerr << "Setup time: " << previous << std::endl;
 
     double lag = 0.0;
@@ -59,6 +45,7 @@ int main() {
 
         while (lag >= timestep) {
             // Update simulations and stuff.
+            key_handler.handleKeys(Window::getPressedKeys(), lag/timestep);
             lag -= timestep;
         }
         Renderer::render();

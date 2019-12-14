@@ -14,7 +14,8 @@ private:
     glm::vec3 position;
     glm::quat local_coords;
     double last_x, last_y;
-    float sensitivity = 0.005;
+    float sensitivity = 0.003;
+    float speed = 0.05;
 public:
     glm::vec3 front, right, up;
     Camera();
@@ -24,12 +25,9 @@ public:
     void rotate(glm::vec3 const& axis, float degrees);
     /**
      * Translate the camera in the given direction.
-     * When absolute is set to false, it will take translation as a direction to move in relative to the
-     * rotation of the camera. Otherwise, it will move in world coordinates.
      * @param translation The direction in which to move.
-     * @param absolute Whether or not to use world coordinates for the translation.
      */
-    void translate(glm::vec3 translation, bool absolute = false);
+    void translate(glm::vec3 translation, double delta_t);
     void cameraCallback(GLFWwindow* window, double x_pos, double y_pos);
     /**
      * Change the fov of the camera to zoom in or out.
