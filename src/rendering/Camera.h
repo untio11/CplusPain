@@ -31,6 +31,11 @@ public:
      */
     void translate(glm::vec3 translation, bool absolute = false);
     void cameraCallback(GLFWwindow* window, double x_pos, double y_pos);
+    /**
+     * Change the fov of the camera to zoom in or out.
+     * @param amount The amount with which to change the FOV. Negative values represent zooming out and positive zooming in.
+     */
+    void zoom(double amount);
 };
 
 

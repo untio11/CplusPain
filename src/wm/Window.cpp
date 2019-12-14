@@ -19,6 +19,8 @@ GLFWwindow* Window::init(const int width, const int height, const char* name, Ca
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetKeyCallback(window, keyCallback);
     glfwSetFramebufferSizeCallback(window, resizeCallback);
+    glfwSetCursorPosCallback(window, cursorCallback);
+    glfwSetScrollCallback(window, scrollCallback);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
 
@@ -46,4 +48,8 @@ void Window::resizeCallback(GLFWwindow* window, int width, int height) {
 
 void Window::cursorCallback(GLFWwindow* window, double x_pos, double y_pos) {
     cam->cameraCallback(window, x_pos, y_pos);
+}
+
+void Window::scrollCallback(GLFWwindow *window, double xoffset, double y_offset) {
+    cam->zoom(y_offset * 0.1);
 }

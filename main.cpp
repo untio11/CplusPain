@@ -32,7 +32,6 @@ int main() {
     Renderer::resize(width, height);
     double previous = glfwGetTime();
     using namespace std::placeholders;
-    glfwSetCursorPosCallback(window, Window::cursorCallback);
     std::cerr << "Setup time: " << previous << std::endl;
 
     double lag = 0.0;

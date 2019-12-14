@@ -60,3 +60,7 @@ void Camera::cameraCallback(GLFWwindow *window, double x_pos, double y_pos) {
     last_y = y_pos;
 }
 
+void Camera::zoom(double amount) {
+    camera_distance = __min(3.5, __max(0.5, camera_distance + amount));
+}
+
