@@ -4,6 +4,7 @@
 #include <set>
 #include "../rendering/Camera.h"
 #include <GLFW/glfw3.h>
+#include <glm/gtx/string_cast.hpp>
 
 class KeyHandler {
 private:

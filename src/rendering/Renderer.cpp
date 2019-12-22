@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>
+#include <glfw/glfw3.h>
 
 // Initialize static member variables.
 int Renderer::width = 0;
@@ -34,12 +35,16 @@ void Renderer::init() {
 void Renderer::render() {
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    loadCameraData(*camera);
-    rayTrace();
+    for (int i = 0; i < 8; ++i) {
+        rayTrace();
+    }
     renderViewport();
+    glClearTexImage(raytrace_image, 0, GL_RGBA, GL_FLOAT, NULL);
 }
 
 void Renderer::rayTrace() {
+    loadCameraData(*camera);
+    glProgramUniform1f(raytrace_shader->getID(), 3, (float) glfwGetTime());
     raytrace_shader->use();
     glDispatchCompute(
             ceil(width  * scaling / raytrace_work_group_dim[0]),
@@ -96,8 +101,8 @@ void Renderer::setupTexture() {
     glBindTexture(GL_TEXTURE_2D, raytrace_image);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width * scaling, height * scaling, 0, GL_RGBA, GL_FLOAT, nullptr);
     glBindImageTexture(0, raytrace_image, 0, false, 0, GL_READ_WRITE, GL_RGBA32F);
 }
