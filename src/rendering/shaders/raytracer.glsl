@@ -5,7 +5,8 @@ layout(rgba32f, binding = 0) uniform restrict coherent image2D img_output;
 layout(location = 0) uniform vec3  camera;
 layout(location = 1) uniform float fov;
 layout(location = 2) uniform mat3  transform;
-layout(location = 3) uniform float time;
+layout(location = 3) uniform int seed;
+layout(location = 4) uniform int AA_level;
 
 // A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
 uint hash( uint x ) {
@@ -49,17 +50,15 @@ vec3 discriminant(vec3 ray, vec3 source, vec3 target, float sphere_radius) {
 }
 
 vec3 getRay() {
-    vec2 pixel_coords = gl_GlobalInvocationID.xy;
+    vec2 pixel_coords = gl_GlobalInvocationID.xy +
+        vec2(random(vec2(seed, gl_GlobalInvocationID.x)), random(vec2(seed, gl_GlobalInvocationID.y)));
     vec2 dimensions = imageSize(img_output);
     // Map pixel coordinates to normalized space: [-1,1]^2 (sorta, taking care of aspect ratio)
     float x = (float(pixel_coords.x * 2.0 - dimensions.x) / (dimensions.x)) * (16.0/9.0) + camera.x;
     float y = (float(pixel_coords.y * 2.0 - dimensions.y) / dimensions.y) + camera.y;
     float z = camera.z + fov;
 
-    return (normalize(vec3(x, y, z) - camera) * transform +
-        vec3(random(gl_GlobalInvocationID.x),
-        random(gl_GlobalInvocationID.y),
-        random(gl_GlobalInvocationID.z)) / 130000.0);
+    return normalize((vec3(x, y, z) - camera) * transform);
 }
 
 vec4 phong(vec3 point, vec3 normal, vec3 light_source, vec4 sphere_color, float shininess) {
@@ -123,7 +122,7 @@ void main() {
     // get index in global work group i.e x,y position
     ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
 
-    vec4 color = trace() * 0.125;
+    vec4 color = trace() / float(AA_level);
     vec4 base_color = imageLoad(img_output, pixel_coords);
     imageStore(img_output, pixel_coords, base_color + color);
 }

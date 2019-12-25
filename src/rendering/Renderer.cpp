@@ -16,6 +16,7 @@ unsigned int Renderer::viewport_index_vbo = 0;
 unsigned int Renderer::raytrace_image = 0;
 int Renderer::raytrace_work_group_dim[] = {0, 0, 0};
 Camera* Renderer::camera = nullptr;
+int Renderer::AA_level = 1;
 
 void Renderer::resize(int _width, int _height) {
     width = _width;
@@ -30,13 +31,16 @@ void Renderer::init() {
     setupRaytraceProgram();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, raytrace_image);
+    glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
 }
 
 void Renderer::render() {
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    for (int i = 0; i < 8; ++i) {
+    for (int i = 0; i < AA_level; ++i) {
+        glProgramUniform1i(raytrace_shader->getID(), 3, i);
         rayTrace();
+        glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     }
     renderViewport();
     glClearTexImage(raytrace_image, 0, GL_RGBA, GL_FLOAT, NULL);
@@ -44,14 +48,12 @@ void Renderer::render() {
 
 void Renderer::rayTrace() {
     loadCameraData(*camera);
-    glProgramUniform1f(raytrace_shader->getID(), 3, (float) glfwGetTime());
     raytrace_shader->use();
     glDispatchCompute(
             ceil(width  * scaling / raytrace_work_group_dim[0]),
             ceil(height * scaling / raytrace_work_group_dim[1]),
             1
     );
-    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
 void Renderer::renderViewport() {
@@ -150,5 +152,12 @@ void Renderer::loadCameraData(Camera& _camera) { // Might keep track of last pos
 
 void Renderer::setCamera(Camera* _camera) {
     camera = _camera;
+}
+
+void Renderer::changeAA(int delta) {
+    std::cerr << "ChanceAA called, delta = " << delta << std::endl;
+    AA_level = __max(1, AA_level + delta);
+    glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
+    std::cerr << "AA_level = " << AA_level << std::endl;
 }
 

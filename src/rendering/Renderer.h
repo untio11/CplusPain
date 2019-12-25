@@ -22,6 +22,8 @@ private:
     static int raytrace_work_group_dim[3];
     // Scaling parameter for image quality.
     static constexpr float scaling = 1.0f;
+    // Anti-aliasing level
+    static int AA_level;
     // Coordinates and indices for the viewport.
     static constexpr float viewport[16] {
             -1.0f,  1.0f, 0.0f, 1.0f, // 1/6 -> ID:0
@@ -50,6 +52,7 @@ public:
     static void init();
     static void render();
     static void setCamera(Camera* camera);
+    static void changeAA(int delta);
     ~Renderer();
 };
 
