@@ -4,6 +4,8 @@
 #include <set>
 #include "../rendering/Camera.h"
 #include <GLFW/glfw3.h>
+#include <glm/gtx/string_cast.hpp>
+#include "../rendering/Renderer.h"
 
 class KeyHandler {
 private:
@@ -32,6 +34,14 @@ public:
                     break;
                 case GLFW_KEY_D:
                     camera->translate(camera->right, delta_t);
+                    break;
+                case GLFW_KEY_MINUS:
+                    Renderer::changeAA(-1);
+                    pressed_keys.erase(key);
+                    break;
+                case GLFW_KEY_EQUAL:
+                    Renderer::changeAA(1);
+                    pressed_keys.erase(key);
                     break;
                 default:
                     break;

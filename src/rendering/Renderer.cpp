@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <glm/gtc/type_ptr.hpp>
+#include <glfw/glfw3.h>
 
 // Initialize static member variables.
 int Renderer::width = 0;
@@ -15,6 +16,7 @@ unsigned int Renderer::viewport_index_vbo = 0;
 unsigned int Renderer::raytrace_image = 0;
 int Renderer::raytrace_work_group_dim[] = {0, 0, 0};
 Camera* Renderer::camera = nullptr;
+int Renderer::AA_level = 1;
 
 void Renderer::resize(int _width, int _height) {
     width = _width;
@@ -29,24 +31,29 @@ void Renderer::init() {
     setupRaytraceProgram();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, raytrace_image);
+    glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
 }
 
 void Renderer::render() {
     glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-    loadCameraData(*camera);
-    rayTrace();
+    for (int i = 0; i < AA_level; ++i) {
+        glProgramUniform1i(raytrace_shader->getID(), 3, i);
+        rayTrace();
+        glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+    }
     renderViewport();
+    glClearTexImage(raytrace_image, 0, GL_RGBA, GL_FLOAT, NULL);
 }
 
 void Renderer::rayTrace() {
+    loadCameraData(*camera);
     raytrace_shader->use();
     glDispatchCompute(
             ceil(width  * scaling / raytrace_work_group_dim[0]),
             ceil(height * scaling / raytrace_work_group_dim[1]),
             1
     );
-    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
 void Renderer::renderViewport() {
@@ -96,8 +103,8 @@ void Renderer::setupTexture() {
     glBindTexture(GL_TEXTURE_2D, raytrace_image);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width * scaling, height * scaling, 0, GL_RGBA, GL_FLOAT, nullptr);
     glBindImageTexture(0, raytrace_image, 0, false, 0, GL_READ_WRITE, GL_RGBA32F);
 }
@@ -145,5 +152,12 @@ void Renderer::loadCameraData(Camera& _camera) { // Might keep track of last pos
 
 void Renderer::setCamera(Camera* _camera) {
     camera = _camera;
+}
+
+void Renderer::changeAA(int delta) {
+    std::cerr << "ChanceAA called, delta = " << delta << std::endl;
+    AA_level = __max(1, AA_level + delta);
+    glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
+    std::cerr << "AA_level = " << AA_level << std::endl;
 }
 
