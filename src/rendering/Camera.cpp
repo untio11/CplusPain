@@ -1,8 +1,6 @@
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
 Camera::Camera() {
@@ -28,8 +26,7 @@ glm::mat3 Camera::getRotationMatrix() {
 }
 
 void Camera::rotate(glm::vec3 const& axis, float degrees) {
-    glm::quat quat;
-    quat = glm::angleAxis(degrees, axis);
+    glm::quat quat = glm::angleAxis(degrees, axis);
     up = quat * up;
     right = quat * right;
     front = quat * front;
