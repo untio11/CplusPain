@@ -119,7 +119,7 @@ void Renderer::setupRaytraceProgram() {
     raytrace_shader->addFile("../src/rendering/shaders/raytracer.glsl", GL_COMPUTE_SHADER);
     raytrace_shader->createProgram();
     glGetProgramiv(raytrace_shader->getID(), GL_COMPUTE_WORK_GROUP_SIZE, raytrace_work_group_dim);
-    std::cerr << "Work group dimensions: " << raytrace_work_group_dim[0] << ", "
+    std::cout << "[Info] Work group dimensions: " << raytrace_work_group_dim[0] << ", "
         << raytrace_work_group_dim[1] << ", " << raytrace_work_group_dim[2] << std::endl;
     int work_grp_cnt[3];
 
@@ -127,7 +127,7 @@ void Renderer::setupRaytraceProgram() {
     glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 1, &work_grp_cnt[1]);
     glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_COUNT, 2, &work_grp_cnt[2]);
 
-    fprintf(stderr, "max global (total) work group size x:%i y:%i z:%i\n",
+    printf("[Info] Max global (total) work group size x:%i y:%i z:%i\n",
            work_grp_cnt[0], work_grp_cnt[1], work_grp_cnt[2]);
 
     int work_grp_size[3];
@@ -136,12 +136,12 @@ void Renderer::setupRaytraceProgram() {
     glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 1, &work_grp_size[1]);
     glGetIntegeri_v(GL_MAX_COMPUTE_WORK_GROUP_SIZE, 2, &work_grp_size[2]);
 
-    fprintf(stderr, "max local (in one shader) work group sizes x:%i y:%i z:%i\n",
+    printf("[Info] Max local (in one shader) work group sizes x:%i y:%i z:%i\n",
            work_grp_size[0], work_grp_size[1], work_grp_size[2]);
 
     int work_grp_inv;
     glGetIntegerv(GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &work_grp_inv);
-    fprintf(stderr, "max local work group invocations %i\n", work_grp_inv);
+    printf("[Info] Max local work group invocations %i\n", work_grp_inv);
 }
 
 void Renderer::loadCameraData(Camera& _camera) { // Might keep track of last position to copy less.
@@ -157,6 +157,6 @@ void Renderer::setCamera(Camera* _camera) {
 void Renderer::changeAA(int delta) {
     AA_level = __max(1, AA_level + delta);
     glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
-    std::cerr << "AA_level = " << AA_level << std::endl;
+    std::cerr << "[Info] AA_level = " << AA_level << std::endl;
 }
 

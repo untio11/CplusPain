@@ -5,8 +5,20 @@ layout(rgba32f, binding = 0) uniform restrict coherent image2D img_output;
 layout(location = 0) uniform vec3  camera;
 layout(location = 1) uniform float fov;
 layout(location = 2) uniform mat3  transform;
-layout(location = 3) uniform int seed;
-layout(location = 4) uniform int AA_level;
+layout(location = 3) uniform int   seed;
+layout(location = 4) uniform int   AA_level;
+
+layout(std430, binding = 1) buffer Indices {
+    int indices[];
+};
+
+layout(std430, binding = 2) buffer VertexPositions {
+    vec3 positions[];
+};
+
+layout(std430, binding = 3) buffer VertexNormals {
+    vec3 normals[];
+};
 
 // A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
 uint hash( uint x ) {
@@ -87,9 +99,10 @@ vec4 planeIntersect(vec3 ray, float closest) {
     vec3 intersection = d * ray + camera;
 
     if (d >= 0.0  && d <= closest) {
-        vec4 col = ((abs(int(intersection.x - 0.5) % 2) < 0.001) && !(abs(int(intersection.z - 0.5) % 2) < 0.001)) ? vec4(0.3, 0.3, 0.3, 1.0) : vec4(0.6, 0.6, 0.6, 1.0);
-        return phong(intersection, planenormal, vec3(0.0, 4.0, 0.0), col, 0.01);
+        vec4 col = ((abs(int(intersection.x) % 2) < 0.001) ^^ (abs(int(intersection.z) % 2) < 0.001)) ? vec4(0.3, 0.3, 0.3, 1.0) : vec4(0.6, 0.6, 0.6, 1.0);
+        return phong(intersection, planenormal, vec3(0.0, 4.0, 0.0), col, 0.1);
     }
+
     return vec4(0.53, 0.81, 0.98, 1.0);
 }
 

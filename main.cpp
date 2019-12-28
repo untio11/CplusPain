@@ -5,6 +5,13 @@
 #include "src/rendering/Camera.h"
 #include "src/wm/KeyHandler.h"
 
+#include "src/scene/Prop.h"
+
+void test() {
+    Prop test_prop = Prop();
+    test_prop.loadObj("../res/suzanne.obj");
+}
+
 int main() {
     Camera cam;
     GLFWwindow* window = Window::init(720, 480, "Test", &cam);
@@ -18,7 +25,7 @@ int main() {
     Renderer::resize(width, height);
 
     double previous = glfwGetTime();
-    std::cerr << "Setup time: " << previous << std::endl;
+    std::cerr << "[Info] Setup time: " << previous << std::endl;
 
     double lag = 0.0;
     double current;
@@ -28,6 +35,8 @@ int main() {
     const double timestep = 10.0 / 1000.0; // In ms.
     const unsigned int frames = 300;
 
+    test();
+
     while (!glfwWindowShouldClose(window)) {
         current = glfwGetTime();
         elapsed = current - previous;
@@ -36,7 +45,7 @@ int main() {
         lag += elapsed;
 
         if (iterations == frames) {
-            std::cout << "Avg Frametime over last "<< frames << " frames: " << accumulated * 1000 / frames << "ms.\n";
+            std::cout << "[Info] Avg Frametime over last "<< frames << " frames: " << accumulated * 1000 / frames << "ms.\n";
             accumulated = 0;
             iterations = 0;
         }
