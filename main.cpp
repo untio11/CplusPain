@@ -25,7 +25,7 @@ int main() {
     Renderer::resize(width, height);
 
     double previous = glfwGetTime();
-    std::cerr << "[Info] Setup time: " << previous << std::endl;
+    std::cout << "[Info] Setup time: " << previous << std::endl;
 
     double lag = 0.0;
     double current;

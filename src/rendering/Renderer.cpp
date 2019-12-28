@@ -157,6 +157,6 @@ void Renderer::setCamera(Camera* _camera) {
 void Renderer::changeAA(int delta) {
     AA_level = __max(1, AA_level + delta);
     glProgramUniform1i(raytrace_shader->getID(), 4, AA_level);
-    std::cerr << "[Info] AA_level = " << AA_level << std::endl;
+    std::cout << "[Info] AA_level = " << AA_level << std::endl;
 }
 
