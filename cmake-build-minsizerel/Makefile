@@ -338,6 +338,114 @@ src/scene/Scene.cpp.s:
 	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/Scene.cpp.s
 .PHONY : src/scene/Scene.cpp.s
 
+src/scene/bvh/BVHFunc.obj: src/scene/bvh/BVHFunc.cpp.obj
+
+.PHONY : src/scene/bvh/BVHFunc.obj
+
+# target to build an object file
+src/scene/bvh/BVHFunc.cpp.obj:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj
+.PHONY : src/scene/bvh/BVHFunc.cpp.obj
+
+src/scene/bvh/BVHFunc.i: src/scene/bvh/BVHFunc.cpp.i
+
+.PHONY : src/scene/bvh/BVHFunc.i
+
+# target to preprocess a source file
+src/scene/bvh/BVHFunc.cpp.i:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.i
+.PHONY : src/scene/bvh/BVHFunc.cpp.i
+
+src/scene/bvh/BVHFunc.s: src/scene/bvh/BVHFunc.cpp.s
+
+.PHONY : src/scene/bvh/BVHFunc.s
+
+# target to generate assembly for a file
+src/scene/bvh/BVHFunc.cpp.s:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.s
+.PHONY : src/scene/bvh/BVHFunc.cpp.s
+
+src/scene/bvh/Cluster.obj: src/scene/bvh/Cluster.cpp.obj
+
+.PHONY : src/scene/bvh/Cluster.obj
+
+# target to build an object file
+src/scene/bvh/Cluster.cpp.obj:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj
+.PHONY : src/scene/bvh/Cluster.cpp.obj
+
+src/scene/bvh/Cluster.i: src/scene/bvh/Cluster.cpp.i
+
+.PHONY : src/scene/bvh/Cluster.i
+
+# target to preprocess a source file
+src/scene/bvh/Cluster.cpp.i:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.i
+.PHONY : src/scene/bvh/Cluster.cpp.i
+
+src/scene/bvh/Cluster.s: src/scene/bvh/Cluster.cpp.s
+
+.PHONY : src/scene/bvh/Cluster.s
+
+# target to generate assembly for a file
+src/scene/bvh/Cluster.cpp.s:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.s
+.PHONY : src/scene/bvh/Cluster.cpp.s
+
+src/scene/bvh/InnerCluster.obj: src/scene/bvh/InnerCluster.cpp.obj
+
+.PHONY : src/scene/bvh/InnerCluster.obj
+
+# target to build an object file
+src/scene/bvh/InnerCluster.cpp.obj:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj
+.PHONY : src/scene/bvh/InnerCluster.cpp.obj
+
+src/scene/bvh/InnerCluster.i: src/scene/bvh/InnerCluster.cpp.i
+
+.PHONY : src/scene/bvh/InnerCluster.i
+
+# target to preprocess a source file
+src/scene/bvh/InnerCluster.cpp.i:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.i
+.PHONY : src/scene/bvh/InnerCluster.cpp.i
+
+src/scene/bvh/InnerCluster.s: src/scene/bvh/InnerCluster.cpp.s
+
+.PHONY : src/scene/bvh/InnerCluster.s
+
+# target to generate assembly for a file
+src/scene/bvh/InnerCluster.cpp.s:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.s
+.PHONY : src/scene/bvh/InnerCluster.cpp.s
+
+src/scene/bvh/LeafCluster.obj: src/scene/bvh/LeafCluster.cpp.obj
+
+.PHONY : src/scene/bvh/LeafCluster.obj
+
+# target to build an object file
+src/scene/bvh/LeafCluster.cpp.obj:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj
+.PHONY : src/scene/bvh/LeafCluster.cpp.obj
+
+src/scene/bvh/LeafCluster.i: src/scene/bvh/LeafCluster.cpp.i
+
+.PHONY : src/scene/bvh/LeafCluster.i
+
+# target to preprocess a source file
+src/scene/bvh/LeafCluster.cpp.i:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.i
+.PHONY : src/scene/bvh/LeafCluster.cpp.i
+
+src/scene/bvh/LeafCluster.s: src/scene/bvh/LeafCluster.cpp.s
+
+.PHONY : src/scene/bvh/LeafCluster.s
+
+# target to generate assembly for a file
+src/scene/bvh/LeafCluster.cpp.s:
+	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.s
+.PHONY : src/scene/bvh/LeafCluster.cpp.s
+
 src/wm/Window.obj: src/wm/Window.cpp.obj
 
 .PHONY : src/wm/Window.obj
@@ -398,6 +506,18 @@ help:
 	@echo ... src/scene/Scene.obj
 	@echo ... src/scene/Scene.i
 	@echo ... src/scene/Scene.s
+	@echo ... src/scene/bvh/BVHFunc.obj
+	@echo ... src/scene/bvh/BVHFunc.i
+	@echo ... src/scene/bvh/BVHFunc.s
+	@echo ... src/scene/bvh/Cluster.obj
+	@echo ... src/scene/bvh/Cluster.i
+	@echo ... src/scene/bvh/Cluster.s
+	@echo ... src/scene/bvh/InnerCluster.obj
+	@echo ... src/scene/bvh/InnerCluster.i
+	@echo ... src/scene/bvh/InnerCluster.s
+	@echo ... src/scene/bvh/LeafCluster.obj
+	@echo ... src/scene/bvh/LeafCluster.i
+	@echo ... src/scene/bvh/LeafCluster.s
 	@echo ... src/wm/Window.obj
 	@echo ... src/wm/Window.i
 	@echo ... src/wm/Window.s

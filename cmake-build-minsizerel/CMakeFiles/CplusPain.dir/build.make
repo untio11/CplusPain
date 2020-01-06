@@ -173,6 +173,58 @@ CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\BVH.cpp" -o CMakeFiles\CplusPain.dir\src\scene\BVH.cpp.s
 
+CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj: CMakeFiles/CplusPain.dir/flags.make
+CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj: ../src/scene/bvh/Cluster.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CplusPain.dir\src\scene\bvh\Cluster.cpp.obj -c "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\Cluster.cpp"
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\Cluster.cpp" > CMakeFiles\CplusPain.dir\src\scene\bvh\Cluster.cpp.i
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\Cluster.cpp" -o CMakeFiles\CplusPain.dir\src\scene\bvh\Cluster.cpp.s
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj: CMakeFiles/CplusPain.dir/flags.make
+CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj: ../src/scene/bvh/LeafCluster.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CplusPain.dir\src\scene\bvh\LeafCluster.cpp.obj -c "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\LeafCluster.cpp"
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\LeafCluster.cpp" > CMakeFiles\CplusPain.dir\src\scene\bvh\LeafCluster.cpp.i
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\LeafCluster.cpp" -o CMakeFiles\CplusPain.dir\src\scene\bvh\LeafCluster.cpp.s
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj: CMakeFiles/CplusPain.dir/flags.make
+CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj: ../src/scene/bvh/InnerCluster.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CplusPain.dir\src\scene\bvh\InnerCluster.cpp.obj -c "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\InnerCluster.cpp"
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\InnerCluster.cpp" > CMakeFiles\CplusPain.dir\src\scene\bvh\InnerCluster.cpp.i
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\InnerCluster.cpp" -o CMakeFiles\CplusPain.dir\src\scene\bvh\InnerCluster.cpp.s
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj: CMakeFiles/CplusPain.dir/flags.make
+CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj: ../src/scene/bvh/BVHFunc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CplusPain.dir\src\scene\bvh\BVHFunc.cpp.obj -c "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\BVHFunc.cpp"
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\BVHFunc.cpp" > CMakeFiles\CplusPain.dir\src\scene\bvh\BVHFunc.cpp.i
+
+CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\robin\Documents\Programming projects\CplusPain\src\scene\bvh\BVHFunc.cpp" -o CMakeFiles\CplusPain.dir\src\scene\bvh\BVHFunc.cpp.s
+
 # Object files for target CplusPain
 CplusPain_OBJECTS = \
 "CMakeFiles/CplusPain.dir/main.cpp.obj" \
@@ -183,7 +235,11 @@ CplusPain_OBJECTS = \
 "CMakeFiles/CplusPain.dir/lib/glad/src/glad.c.obj" \
 "CMakeFiles/CplusPain.dir/src/scene/Scene.cpp.obj" \
 "CMakeFiles/CplusPain.dir/src/scene/Prop.cpp.obj" \
-"CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.obj"
+"CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.obj" \
+"CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj" \
+"CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj" \
+"CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj" \
+"CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj"
 
 # External object files for target CplusPain
 CplusPain_EXTERNAL_OBJECTS =
@@ -197,11 +253,15 @@ CplusPain.exe: CMakeFiles/CplusPain.dir/lib/glad/src/glad.c.obj
 CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/Scene.cpp.obj
 CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/Prop.cpp.obj
 CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.obj
+CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj
+CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj
+CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj
+CplusPain.exe: CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj
 CplusPain.exe: CMakeFiles/CplusPain.dir/build.make
 CplusPain.exe: CMakeFiles/CplusPain.dir/linklibs.rsp
 CplusPain.exe: CMakeFiles/CplusPain.dir/objects1.rsp
 CplusPain.exe: CMakeFiles/CplusPain.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CplusPain.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable CplusPain.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CplusPain.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

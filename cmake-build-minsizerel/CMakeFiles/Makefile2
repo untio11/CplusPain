@@ -73,12 +73,12 @@ preinstall:
 CMakeFiles/CplusPain.dir/all:
 	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/depend
 	$(MAKE) -f CMakeFiles\CplusPain.dir\build.make CMakeFiles/CplusPain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target CplusPain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target CplusPain"
 .PHONY : CMakeFiles/CplusPain.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CplusPain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" 14
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/CplusPain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\robin\Documents\Programming projects\CplusPain\cmake-build-minsizerel\CMakeFiles" 0
 .PHONY : CMakeFiles/CplusPain.dir/rule

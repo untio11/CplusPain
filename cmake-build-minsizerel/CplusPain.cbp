@@ -134,7 +134,34 @@
 		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/Scene.h">
 			<Option target="CplusPain"/>
 		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/BVHFunc.cpp">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/BVHFunc.h">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/Cluster.cpp">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/Cluster.h">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/InnerCluster.cpp">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/InnerCluster.h">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/LeafCluster.cpp">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/LeafCluster.h">
+			<Option target="CplusPain"/>
+		</Unit>
 		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/Primitive.h">
+			<Option target="CplusPain"/>
+		</Unit>
+		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/util/MathHelp.h">
 			<Option target="CplusPain"/>
 		</Unit>
 		<Unit filename="C:/Users/robin/Documents/Programming projects/CplusPain/src/wm/KeyHandler.h">

@@ -20,6 +20,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/BVH.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/BVH.cpp.obj"
   "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/Prop.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/Prop.cpp.obj"
   "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/Scene.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/Scene.cpp.obj"
+  "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/BVHFunc.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/bvh/BVHFunc.cpp.obj"
+  "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/Cluster.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/bvh/Cluster.cpp.obj"
+  "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/InnerCluster.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/bvh/InnerCluster.cpp.obj"
+  "C:/Users/robin/Documents/Programming projects/CplusPain/src/scene/bvh/LeafCluster.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/scene/bvh/LeafCluster.cpp.obj"
   "C:/Users/robin/Documents/Programming projects/CplusPain/src/wm/Window.cpp" "C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir/src/wm/Window.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -24,18 +24,19 @@ int main() {
     glfwGetWindowSize(window, &width, &height);
     Renderer::resize(width, height);
 
-    double previous = glfwGetTime();
-    std::cerr << "[Info] Setup time: " << previous << std::endl;
+	test();
 
-    double lag = 0.0;
-    double current;
-    double elapsed;
-    double accumulated = 0.0;
-    unsigned int iterations = 0;
-    const double timestep = 10.0 / 1000.0; // In ms.
-    const unsigned int frames = 300;
+	double previous = glfwGetTime();
+	std::cerr << "[Info] Setup time: " << previous << std::endl;
 
-    test();
+	double lag = 0.0;
+	double current;
+	double elapsed;
+	double accumulated = 0.0;
+	unsigned int iterations = 0;
+	const double timestep = 10.0 / 1000.0; // In ms.
+	const unsigned int frames = 300;
+
 
     while (!glfwWindowShouldClose(window)) {
         current = glfwGetTime();

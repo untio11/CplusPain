@@ -2,10 +2,10 @@
 #define CPLUSPAIN_PROP_H
 
 #include "../../lib/tiny_obj_loader/tiny_obj_loader.h"
-#include "BoundingVolume.h"
 #include <vector>
 #include <glm/vec3.hpp>
 #include "bvh/Primitive.h"
+#include "bvh/Cluster.h"
 
 class Prop {
 private:
@@ -14,10 +14,7 @@ private:
     std::vector<tinyobj::material_t> materials;
     std::vector<Primitive> primitives;
 public:
-    float* getData();
-    float* getPositions();
     void loadObj(const std::string& file_name);
-    std::vector<float> getVertexPositions();
 };
 
 
