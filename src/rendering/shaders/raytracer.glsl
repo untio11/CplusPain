@@ -62,9 +62,10 @@ vec3 discriminant(vec3 ray, vec3 source, vec3 target, float sphere_radius) {
 }
 
 vec3 getRay() {
-    vec2 jitter = (AA_level > 1) ? vec2(0.1 + 0.8 * random(vec2(seed, gl_GlobalInvocationID.x)), 0.1 + 0.8 * random(vec2(seed, gl_GlobalInvocationID.y))) : vec2(0.5);
+    vec2 jitter = (AA_level > 1) ? vec2(0.05 + 0.9 * random(vec2(seed, gl_GlobalInvocationID.x)), 0.05 + 0.9 * random(vec2(seed, gl_GlobalInvocationID.y))) : vec2(0.5);
     vec2 pixel_coords = gl_GlobalInvocationID.xy + jitter;
     vec2 dimensions = imageSize(img_output);
+
     // Map pixel coordinates to normalized space: [-1,1]^2 (sorta, taking care of aspect ratio)
     float x = (float(pixel_coords.x * 2.0 - dimensions.x) / (dimensions.x)) * (16.0/9.0) + camera.x;
     float y = (float(pixel_coords.y * 2.0 - dimensions.y) / dimensions.y) + camera.y;
