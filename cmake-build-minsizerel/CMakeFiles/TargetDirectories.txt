@@ -1,3 +1,0 @@
-C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/CplusPain.dir
-C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/edit_cache.dir
-C:/Users/robin/Documents/Programming projects/CplusPain/cmake-build-minsizerel/CMakeFiles/rebuild_cache.dir

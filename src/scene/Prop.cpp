@@ -5,11 +5,26 @@
 #include "bvh/BVHFunc.h"
 #include "bvh/LeafCluster.h"
 
+static std::string GetBaseDir(const std::string& filepath) {
+	if (filepath.find_last_of("/\\") != std::string::npos)
+		return filepath.substr(0, filepath.find_last_of("/\\"));
+	return "";
+}
+
 void Prop::loadObj(const std::string& file_name) {
     std::string warn;
     std::string err;
+	std::string base_dir = GetBaseDir(file_name);
+	if (base_dir.empty()) {
+		base_dir = ".";
+	}
+	#ifdef _WIN32
+		base_dir += "\\";
+	#else
+		base_dir += "/";
+	#endif
 
-    bool ret = tinyobj::LoadObj(&attributes, &shapes, &materials, &warn, &err, file_name.c_str());
+    bool ret = tinyobj::LoadObj(&attributes, &shapes, &materials, &warn, &err, file_name.c_str(), base_dir.c_str());
     if (!warn.empty())
         std::cout << "[Warn] " << warn << std::endl;
 
@@ -72,7 +87,7 @@ void Prop::loadObj(const std::string& file_name) {
     }
     std::cout << "[Debug] Primitives.size() = " << primitives.size() << std::endl;
 
-    auto result = BVHFunc::CombineClusters(BVHFunc::buildTree(primitives, 6), 1);
+    auto result = BVHFunc::CombineClusters(BVHFunc::buildTree(primitives, 10), 1);
     std::cout << "[Debug] Final cluster size: " << result.size() << std::endl;
     std::cout << "[Debug] Leaf count: " << result[0]->getLeaves() << ((result[0]->getLeaves() == primitives.size()) ? " == " : " != ") << primitives.size() << std::endl;
     result[0]->printTree(0);

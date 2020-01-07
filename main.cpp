@@ -9,7 +9,7 @@
 
 void test() {
     Prop test_prop = Prop();
-    test_prop.loadObj("../res/suzanne.obj");
+    test_prop.loadObj("../res/CornellBox-Original.obj");
 }
 
 int main() {
